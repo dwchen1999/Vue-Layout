@@ -7,32 +7,33 @@
             </div>
             <mu-icon-button icon="share" slot="right" @click="share.open=true" />
             <mu-icon-button icon="settings" slot="right" @click="setting.open=true" />
-            <mu-icon-button icon=":iconfont icon-github" slot="right" href="https://github.com/jaweii/Vue-Layout" /> 
+            <mu-icon-button icon=":iconfont icon-github" slot="right" href="https://github.com/jaweii/Vue-Layout" />
         </mu-appbar>
         <mu-row class="main-content">
-            <mu-col class="attributes" :width="width.attr" :tablet="width.attr" :desktop="width.attr">
-                <mu-sub-header class="header">
-                    <mu-select-field class="select-field" autoWidth v-model="selectField.value">
-                        <mu-menu-item title="属性" value="属性">
-                        </mu-menu-item>
-                        <mu-menu-item title="组件树" value="组件树">
-                        </mu-menu-item>
-                    </mu-select-field>
-                    <span><a class="parent-component" v-if="parentComponent" @click="switchComponent">┡ {{parentComponent.info.name}}</a> {{current.info?' - '+current.info.name:''}}</span>
-                </mu-sub-header>
-                <attributes v-if="selectField.value==='属性'" class="attributes-content" />
-                <component-tree v-if="selectField.value==='组件树'" class="component-tree" :components="$store.state.components.filter(c=>!c.parentId)" />
-                <div class="attributes-bottom" v-if="current.info">
-                    <mu-flat-button label="UI文档" @click="openUiDocument" />
-                    <mu-flat-button label="操作" @click="oprate" />
-                </div>
-            </mu-col>
+          <mu-col class="components" :width="width.components" :tablet="width.components" :desktop="width.components">
+            <components ref="components" />
+          </mu-col>
+
             <mu-col class="preview" :width="width.preview" :tablet="width.preview" :desktop="width.preview">
                 <preview ref="preview" />
             </mu-col>
-            <mu-col class="components" :width="width.components" :tablet="width.components" :desktop="width.components">
-                <components ref="components" />
-            </mu-col>
+          <mu-col class="attributes" :width="width.attr" :tablet="width.attr" :desktop="width.attr">
+            <mu-sub-header class="header">
+              <mu-select-field class="select-field" autoWidth v-model="selectField.value">
+                <mu-menu-item title="属性" value="属性">
+                </mu-menu-item>
+                <mu-menu-item title="组件树" value="组件树">
+                </mu-menu-item>
+              </mu-select-field>
+              <span><a class="parent-component" v-if="parentComponent" @click="switchComponent">┡ {{parentComponent.info.name}}</a> {{current.info?' - '+current.info.name:''}}</span>
+            </mu-sub-header>
+            <attributes v-if="selectField.value==='属性'" class="attributes-content" />
+            <component-tree v-if="selectField.value==='组件树'" class="component-tree" :components="$store.state.components.filter(c=>!c.parentId)" />
+            <div class="attributes-bottom" v-if="current.info">
+              <mu-flat-button label="UI文档" @click="openUiDocument" />
+              <mu-flat-button label="操作" @click="oprate" />
+            </div>
+          </mu-col>
         </mu-row>
         <mu-dialog :open="setting.open" @close="setting.open=false" title="设置" scrollable>
             <br>
