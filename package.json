@@ -1,8 +1,8 @@
 {
-  "name": "Vue-Layout",
-  "version": "1.0.2",
-  "description": "vue可视化布局",
-  "author": "jawei <1005945485@qq.com>",
+  "name": "AppGen",
+  "version": "0.0.1",
+  "description": "Prototype and Code generator",
+  "author": "David Chen <davidchen@winwintech.cn>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
